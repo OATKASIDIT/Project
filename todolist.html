@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โน๊ตสิ่งที่จะทำ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+        <div class="box">
+            
+            <h1>โน๊ตสิ่งที่จะทำ</h1>
+            <hr width = "90%" size = "2">    
+            <br>
+            <input type="text" id="task" placeholder="เพิ่มสิ่งที่จะโน๊ต">
+            <br>
+            <button onclick="addTask()">เพิ่มจำนวนรายการ</button>
+            <button onclick="resetTasks()">รีเซ็ต</button>
+            <ul id="task-list">
+            
+            </ul>
+            <br>
+            <hr width = "90%" size = "2">
+            
+            <p style="margin: 4vh;">จำนวนครั้งที่โน๊ต : <span id="total-tasks">0</span></p>
+            
+            <script>
+                let taskCount = 0;
+
+                function addTask() {
+                    const taskInput = document.getElementById("task");
+                    const taskText = taskInput.value.trim();
+
+                    if (taskText !== "") {
+                        const taskList = document.getElementById("task-list");
+                        const newTask = document.createElement("p");
+                        taskCount++; // เพิ่มจำนวนรายการ
+                        newTask.textContent = taskCount + ". " + taskText; // แสดงลำดับการ
+                        taskList.appendChild(newTask);
+                        taskInput.value = "";
+                        updateTaskCount(); // อัปเดตจำนวนรายการ
+                    }
+                }
+
+                function updateTaskCount() {
+                    const totalTasks = document.getElementById("total-tasks");
+                    totalTasks.textContent = taskCount;
+                }
+                function resetTasks() {
+                    const taskList = document.getElementById("task-list");
+                    taskList.innerHTML = "";
+                    taskCount = 0;
+                    updateTaskCount();
+                }
+            </script>
+            <br>
+        </div>
+    </center>
+</body>
+</html>
